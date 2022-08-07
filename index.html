@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Станция</title>
+    <link rel="stylesheet" href="source/index.css">
+</head>
+<body>
+    <header>
+        <div class="pages_url">
+            <span class="head_url_1">
+                <a href="#" onClick="ChangeTitle('Станция');">Станция</a>
+            </span>
+            <span class="head_url_2">
+                <a href="#infrastructure" onClick="ChangeTitle('Инфрастуктура');">Инфрастуктура</a>
+            </span>
+            <span class="head_url_3">
+                <a href="#isolation" onClick="ChangeTitle('Изоляция');">Изоляция</a>
+            </span> 
+            <span class="head_url_4">
+                <a href="#measurements" onClick="ChangeTitle('Измерения');">Измерения</a>
+            </span>
+            <span class="head_url_5">
+                <a href="#events" onClick="ChangeTitle('События');">События</a>
+            </span>
+        </div>
+    </header>
+
+    <main>
+        <br id="infrastructure">
+        <br id="isolation">
+        <br id="measurements">
+        <br id="events">
+        <!-- Станция -->
+        <div class="content station">
+            <!-- Header -->
+            <div class="interfaces_header">
+                <div class="btn_switcher">
+                    <input name="stationRadio" type="radio" value="nowTS" id="nowTS" checked="checked">
+                    <label for="nowTS" style="margin-right: 10px;">Текущий ТС</label>
+                    <input name="stationRadio" type="radio" value="protocol" id="protocol">
+                    <label for="protocol">Протоколы</label>
+                </div>
+                <div>
+                    <input type="datetime-local" id="station_before" name="station_before">
+                    <label>-:-</label>
+                    <input type="datetime-local" id="station_after" name="station_after">
+                </div>
+                    <button type="submit">Пуск</button>
+                    <label>-</label>
+                    <input type="range" class="timer_line" id="timer_line" name="timer_line" value="0" step="1" min="0" max="1000">
+            </div>
+            <!-- Header END -->
+            <!-- Content -->
+            <object type="image/svg+xml" data="source/mnemo.svg" id='svg2988'>
+            </object>
+            <!-- Content END -->
+        </div>
+        <!-- Станция END -->
+
+        <!-- Инфраструктура -->
+        <div class="content" id="infrastructure">
+            <!-- Content -->
+            <object type="image/svg+xml" data="source/serial_line.svg" id="svg_serial">
+            </object>
+            <!-- Content END -->
+            
+        </div>
+        <!-- Инфраструктура END -->
+
+        <!-- Изоляция -->
+        <div class="content" id="isolation">
+            <!-- Content -->
+            <object type="image/svg+xml" data="source/isol_sizing.svg" id="svg_isol">
+            </object>
+            <!-- Content END -->
+        </div>
+        <!-- Изоляция END -->
+
+        <!-- Измерения -->
+        <div class="content" id="measurements">
+            <!-- Content -->
+            <div>
+
+            </div>
+            <!-- Content END -->
+        </div>
+        <!-- Измерения END -->
+
+        <!-- События -->
+        <div class="content" id="events">
+            <!-- Header -->
+            <div class="interfaces_header">
+                <div class="btn_switcher">
+                    <input name="eventsRadio" type="radio" value="incidents" id="incidents" checked="checked">
+                    <label for="incidents" style="margin-right: 10px;">Инциденты</label>
+                    <input name="eventsRadio" type="radio" value="archive" id="archive">
+                    <label for="archive">Архив событий</label>
+                </div>
+                <div class="selection">
+                    <label>Место:</label>
+
+                    <div class="selectBox" onclick="showCheckboxes('checkboxes-place')">
+                        <label>все</label>
+                    </div>
+                    <div id="checkboxes-place">
+                        <label for="nizne-2"><input type="checkbox" id="nizne-2">Нижневаровск-2</label>
+                    </div>
+                </div>
+                <div class="selection">
+                    <label>Объект:</label>
+
+                    <div class="selectBox" onclick="showCheckboxes('checkboxes-obj')">
+                        <label>все</label>
+                        <!-- <div class="overSelect"></div> -->
+                    </div>
+                    <div id="checkboxes-obj">
+                        <label for="ak7"><input type="checkbox" id="ak7">Модуль: ak7</label>
+                        <label for="ak8"><input type="checkbox" id="ak8">Модуль: ak8</label>
+                        <label for="ak1"><input type="checkbox" id="ak1">Модуль: ak1</label>
+                        <label for="ak9"><input type="checkbox" id="ak9">Модуль: ak9</label>
+                        <label for="ak2"><input type="checkbox" id="ak2">Модуль: ak2</label>
+                        <label for="ak10"><input type="checkbox" id="ak10">Модуль: ak10</label>
+                        <label for="ak3"><input type="checkbox" id="ak3">Модуль: ak3</label>
+                        <label for="ak11"><input type="checkbox" id="ak11">Модуль: ak11</label>
+                        <label for="ak4"><input type="checkbox" id="ak4">Модуль: ak4</label>
+                        <label for="ak12"><input type="checkbox" id="ak12">Модуль: ak12</label>
+                        <label for="ak5"><input type="checkbox" id="ak5">Модуль: ak5</label>
+                        <label for="ak13"><input type="checkbox" id="ak13">Модуль: ak13</label>
+                        <label for="ak6"><input type="checkbox" id="ak6">Модуль: ak6</label>
+                        <label for="ion2"><input type="checkbox" id="ion2">Модуль: ion2</label>
+                        <label for="ion1"><input type="checkbox" id="ion1">Модуль: ion1</label>
+                        <label for="xrc2"><input type="checkbox" id="xrc2">Модуль: uns_xrc2</label>
+                        <label for="xrc1"><input type="checkbox" id="xrc1">Модуль: uns_xrc1</label>
+                        <label for="pa3"><input type="checkbox" id="pa3">Модуль: uns_pa3</label>
+                        <label for="umv1"><input type="checkbox" id="umv1">Модуль: umv1</label>
+                        <label for="pa4"><input type="checkbox" id="pa4">Модуль: uns_pa4</label>
+                        <label for="num6"><input type="checkbox" id="num6">Стрелка №6</label>
+                        <label for="num4"><input type="checkbox" id="num4">Стрелка №4</label>
+                        <label for="apvp"><input type="checkbox" id="apvp">АПВП</label>
+                    </div>
+                </div>                
+                <div class="selection">
+                    <label>Событие:</label>
+                    <div class="selectBox" onclick="showCheckboxes('checkboxes-event')">
+                        <label>все</label>
+                    </div>
+                    <div id="checkboxes-event">
+                        <label for="no_response"><input type="checkbox" id="no_response">Нет ответа</label>
+                        <label for="transfer_time"><input type="checkbox" id="transfer_time">Превышение времени перевода</label>
+                        <label for="triggering"><input type="checkbox" id="triggering">Срабатывание</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="datetime-local" id="events_before" name="events_before">
+                    <label>-:-</label>
+                    <input type="datetime-local" id="events_after" name="events_after">
+                    <button type="submit">Выбрать</button>
+                </div>
+            </div>
+            <!-- /Header  END -->
+            <!-- Content -->
+            <div>
+
+            </div>
+            <!-- Content END -->
+        </div>
+        <!-- События END -->
+    </main>
+
+    <footer>
+        <div class="footer_urls"> 
+            <a href="./log">Архив</a>
+            <a href="./doc">Документация</a>
+        </div>
+    </footer>
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,180 @@
+@charset "UTF-8";
+@font-face {
+	font-family: 'PTS'; 
+	src: url(PTS-webfont.ttf); 
+}
+::-webkit-scrollbar{width:8px}
+::-webkit-scrollbar-button{background:transparent;height:0px;}
+::-webkit-scrollbar-track{background:transparent}
+::-webkit-scrollbar-track-piece{background:transparent}
+::-webkit-scrollbar-thumb{background:#3498db;border-radius:5px}
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'PTS'; 
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+body {
+    background-color: #333;
+}
+/*-------HEADER-------*/
+header {
+    border-bottom: 8px solid #3498db;
+    background-color: #333;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pages_url {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+.pages_url span {
+    border-radius: 12px 12px 0 0;
+    background-color: #3498db;
+    width: 300px;
+    margin-top: 8px;
+    height: 42px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pages_url span:hover {
+    margin-top: 12px;
+    height: 38px;
+}
+.pages_url a {
+    padding: 20px 80px;
+    font-size: 120%;
+    color: #eee;
+    text-decoration: none;
+}
+.pages_url a:hover {
+    color: #bddceb;
+}
+/*-------HEADER END-------*/
+
+/*-------MAIN-------*/
+main {
+    background-color: #666;
+    min-height: calc(100vh - 58px - 40px);
+}
+main > div:nth-of-type(1), main #infrastructure:target ~ div:nth-of-type(2), main #isolation:target ~ div:nth-of-type(3), main #measurements:target ~ div:nth-of-type(4), main #events:target ~ div:nth-of-type(5) {
+    display: flex;
+}
+#infrastructure, #isolation, #measurements, #events, main > div, main #infrastructure:target ~ div:nth-of-type(1), main #isolation:target ~ div:nth-of-type(1), main #measurements:target ~ div:nth-of-type(1), main #events:target ~ div:nth-of-type(1) {
+    display: none;
+}
+main .content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+main .interfaces_header {
+    width: 100%;
+    height: 40px;
+    background-color: #eee;
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn_switcher {
+    margin-left: 20px;
+    height: 30px;
+    line-height: 30px;
+}
+
+#timer_line {
+    width: 900px;
+    margin-right: 20px;
+}
+.selectBox {
+    position: relative;
+    text-align: center;
+}
+.selectBox label {
+    border-bottom: 1px dotted #777;
+}
+/*  */
+.overSelect {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+#checkboxes-place, #checkboxes-obj, #checkboxes-event {
+    overflow: auto;
+    max-height: 300px;
+    position: absolute;
+    display: none;
+    background-color: #eee;
+    border: 1px solid #333;
+    border-radius: 6px;
+    padding: 10px;
+    box-shadow: 0px 5px 15px 0px rgba(51, 51, 51, 0.5);
+}
+.selection {
+    max-width: 200px;
+}
+#checkboxes-place input, #checkboxes-obj input, #checkboxes-event input {
+    margin-right: 5px;
+}
+
+#checkboxes-place label, #checkboxes-obj label, #checkboxes-event label {
+    display: block;
+    padding: 5px;
+}
+
+input[type=datetime-local] {
+    background-color: transparent;
+    border-radius: 7px;
+    border: 1px solid #333;
+    padding: 3px;
+}
+button {
+    margin: auto 10px;
+    width: 100px;
+    height: 30px;
+    color: #eee;
+    background-color: #3498db;
+    border: none;
+    border-radius: 7px;
+}
+button:hover {
+    background-color: #2b7bb1;
+}
+/*-------MAIN END-------*/
+
+/*-------FOOTER-------*/
+footer {
+    height: 39px;
+    background-color: #3498db;
+    border-top: 1px #333 solid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.footer_urls {
+    width: 200px;
+    display: flex;
+    justify-content: space-between;
+}
+.footer_urls a {
+    color: #eee;
+    text-decoration: none;
+}
+.footer_urls a:hover {
+    color: #bddceb;
+}
+/*-------FOOTER END-------*/
