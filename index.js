@@ -1,8 +1,7 @@
-var requestTime = 100; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTime = 0.8; // request interval in seconds (0; 0.5; 1; 2; etc)
 
 /*-------AutoUpdate SVG-------*/
 window.onload = function() {
-    getEvents()
     setInterval(getEvents, requestTime * 1000);
 };
 /*-------AutoUpdate END-------*/
@@ -25,33 +24,22 @@ function getEvents() {
 /*-------Getting Json & calling ArrayJson() END-------*/
 // 
 /*-------Changer Style SVG-------*/
-function ArrayJSON(obj_JSON) {
+function ArrayJSON2(obj_JSON) {
     obj_JSON.forEach((item) => {
+        console.log(item)
+        var objectSVG = document.getElementById(item.svg); // id div РІ РєРѕС‚РѕСЂРѕРј Р»РµР¶РёС‚ SVG (РЅР°Р·С‹РІР°РµС‚СЃСЏ С‚Р°Рє Р¶Рµ РєР°Рє Рё SVG)
+        var svgDocument = objectSVG.contentDocument;
+
         var arr = item.style.split(':');
         var styleType = arr[0];
         var styleParam = arr[1];
 
-        var objectq = document.getElementById("svg2988"); // id div в котором лежит SVG
-        var svgDocument = objectq.contentDocument;
-        var svgElement = svgDocument.getElementById(item.id);
-
-        try {
-            svgElement.style[styleType] = styleParam;
-        } catch (err) {console.log(err)}
-    });
-}
-function ArrayJSON2(obj_JSON) {
-    obj_JSON.forEach((item) => {
-        console.log(item)
-
-        var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
-        var svgDocument = objectSVG.contentDocument;
-        var svgElement = svgDocument.getElementById('g9123');
-        // var svgSUBID = svgElement.contentDocument.getElementById('text9125');
-        // var svgAtr = svgSUBID.getAttribute(`ksa:subid`);
-
-        // var svgSUBID = svgElement.getAttribute("ksa:subid=\"_time\"")
-        console.log(svgElement)
+        var childs = svgDocument.querySelectorAll(`#${item.id} > *`)
+        for (let i = 0; i < childs.length; i++) {
+            if (childs[i].getAttribute('ksa:subid') == item.subid) {
+                childs[i].style[styleType] = styleParam;
+            }
+        }
     });
 }
 /*-------Changer Style SVG END-------*/
