@@ -26,17 +26,17 @@ function getEvents() {
 /*-------Changer Style SVG-------*/
 function ArrayJSON2(obj_JSON) {
     obj_JSON.forEach((item) => {
-        console.log(item)
-        var objectSVG = document.getElementById(item.svg); // id div РІ РєРѕС‚РѕСЂРѕРј Р»РµР¶РёС‚ SVG (РЅР°Р·С‹РІР°РµС‚СЃСЏ С‚Р°Рє Р¶Рµ РєР°Рє Рё SVG)
+        var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
         var svgDocument = objectSVG.contentDocument;
 
-        var arr = item.style.split(':');
-        var styleType = arr[0];
-        var styleParam = arr[1];
+        var childs = svgDocument.querySelectorAll(`#${item.id} > *`)    // выбор элементов внутри messages.id
+        for (let i = 0; i < childs.length; i++) {                       // перебор элементов
+            if (childs[i].getAttribute('ksa:subid') == item.subid) {    // проверка элемента на соответсвие subid и дальнейшая обработка
 
-        var childs = svgDocument.querySelectorAll(`#${item.id} > *`)
-        for (let i = 0; i < childs.length; i++) {
-            if (childs[i].getAttribute('ksa:subid') == item.subid) {
+                var arr = item.style.split(':');
+                var styleType = arr[0];
+                var styleParam = arr[1];
+
                 childs[i].style[styleType] = styleParam;
             }
         }
