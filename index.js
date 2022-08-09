@@ -46,8 +46,6 @@ function ArrayJSON2(obj_JSON) {
                     if (elems[0] == 'text') {
                             childs[i].textContent = elems[1];
                     } else if (elems[0] == 'fill' && elems[1].length == 9) {
-                        // Фикс неправильной обработки альфа-канала
-                        // некоторыми браузерами (вебкит)
                         childs[i].style[elems[0]] = elems[1].slice(0, 7);
                     } else {
                         childs[i].style[elems[0]] = elems[1];
