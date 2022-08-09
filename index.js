@@ -1,16 +1,16 @@
-var requestTime = 0.3; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTime = 0.5; // request interval in seconds (0; 0.5; 1; 2; etc)
 var requestTimeAll = 3; // request interval in seconds (0; 0.5; 1; 2; etc)
 
 /*-------AutoUpdate SVG-------*/
 window.onload = function() {
-    getEvents('/events?fullState=true');
+    getEvents('/events?fullState=true');        // для быстрого вызова полной функции после загрузки страницы
 
     setInterval(() => {
-        getEvents('/events?fullState=true');
+        getEvents('/events?fullState=true');    // вызов полного json по интервалу requestTimeAll
     }, requestTimeAll * 1000);
 
     setInterval(() => {
-        getEvents('/events');
+        getEvents('/events');                   // вызов json по интервалу requestTime
     }, requestTime * 1000);
 };
 /*-------AutoUpdate END-------*/
@@ -23,7 +23,7 @@ function getEvents(eve) {
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
-                ArrayJSON2(xhr.response.messages)
+                ArrayJSON(xhr.response.messages)    // если подключилось начинает парсить полученные данные
             }
         }
     }
@@ -32,12 +32,12 @@ function getEvents(eve) {
 /*-------Getting Json & calling ArrayJson() END-------*/
 // 
 /*-------Changer Style SVG-------*/
-function ArrayJSON2(obj_JSON) {
+function ArrayJSON(obj_JSON) {
     obj_JSON.forEach((item) => {
-        console.log(item)
         var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
         var svgDocument = objectSVG.contentDocument;
-
+        console.log(objectSVG)
+        console.log(svgDocument)
         var childs = svgDocument.querySelectorAll(`#${item.id} > *`)    // выбор элементов внутри messages.id
         for (let i = 0; i < childs.length; i++) {                       // перебор элементов
             if (childs[i].getAttribute('ksa:subid') == item.subid) {    // проверка элемента на соответсвие subid и дальнейшая обработка
@@ -59,7 +59,7 @@ function ArrayJSON2(obj_JSON) {
 // 
 /*-------Change Tile-------*/
 function ChangeTitle(newTitle){
-    document.title = newTitle;
+    document.title = newTitle;  // меняет название страницы в соответсвии с вкладкой
 }
 /*-------Change Tile END-------*/
 // 
@@ -79,19 +79,7 @@ function showCheckboxes(checkboxes_id) {
 /*-------Checkbox's in event page END-------*/
 // 
 /*-------Station SVG options-------*/
-function SVG_Timer_Now() {
-    var date = new Date();
-    var year_now, month_now, day_now, hour, min, sec;
-    year_now = date.getFullYear();
-    month_now = date.getMonth();
-    day_now = date.getDay();
 
-    hour = date.getHours();
-    min = date.getMinutes();
-    sec = date.getSeconds();
-
-    console.log(year_now, month_now, day_now, hour, min, sec)
-}
 /*-------Station SVG options END-------*/
 // 
 /*-------Infrastructure SVG options-------*/
@@ -101,3 +89,29 @@ function SVG_Timer_Now() {
 /*-------Isolation SVG options-------*/
 
 /*-------Isolation SVG options END-------*/
+// 
+/*-------Events options-------*/
+function tableCreate() {
+    const body = document.body,
+          tbl = document.createElement('table');
+    tbl.style.width = '100px';
+    tbl.style.border = '1px solid black';
+  
+    for (let i = 0; i < 3; i++) {
+      const tr = tbl.insertRow();
+      for (let j = 0; j < 2; j++) {
+        if (i === 2 && j === 1) {
+          break;
+        } else {
+          const td = tr.insertCell();
+          td.appendChild(document.createTextNode(`Cell I${i}/J${j}`));
+          td.style.border = '1px solid black';
+          if (i === 1 && j === 1) {
+            td.setAttribute('rowSpan', '2');
+          }
+        }
+      }
+    }
+    body.appendChild(tbl);
+  }
+/*-------Events options END-------*/
