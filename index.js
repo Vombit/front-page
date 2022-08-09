@@ -1,22 +1,28 @@
-var requestTime = 0.5; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTime = 0.3; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTimeAll = 3; // request interval in seconds (0; 0.5; 1; 2; etc)
 
 /*-------AutoUpdate SVG-------*/
 window.onload = function() {
-    getEvents();
-    setInterval(getEvents, requestTime * 1000);
+    getEvents('/events?fullState=true');
+
+    setInterval(() => {
+        getEvents('/events?fullState=true');
+    }, requestTimeAll * 1000);
+
+    setInterval(() => {
+        getEvents('/events');
+    }, requestTime * 1000);
 };
 /*-------AutoUpdate END-------*/
 // 
 /*-------Getting Json & calling ArrayJson()-------*/
-function getEvents() {
+function getEvents(eve) {
     var xhr = new XMLHttpRequest();
-    ///events?fullState=true
-    xhr.open('GET', '/events?fullState=true', true);
+    xhr.open('GET', eve, true);
     xhr.responseType = 'json';
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
             if (xhr.status === 200) {
-
                 ArrayJSON2(xhr.response.messages)
             }
         }
@@ -28,6 +34,7 @@ function getEvents() {
 /*-------Changer Style SVG-------*/
 function ArrayJSON2(obj_JSON) {
     obj_JSON.forEach((item) => {
+        console.log(item)
         var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
         var svgDocument = objectSVG.contentDocument;
 
@@ -37,7 +44,11 @@ function ArrayJSON2(obj_JSON) {
                 item.style.split(';').filter(function(el){return el.length != 0}).map(function (pars) {
                     var elems = pars.split(/:(.*)/s).filter(function(el){return el.length != 0});
                     if (elems[0] == 'text') {
-                        childs[i].textContent = elems[1];
+                            childs[i].textContent = elems[1];
+                    } else if (elems[0] == 'fill' && elems[1].length == 9) {
+                        // Фикс неправильной обработки альфа-канала
+                        // некоторыми браузерами (вебкит)
+                        childs[i].style[elems[0]] = elems[1].slice(0, 7);
                     } else {
                         childs[i].style[elems[0]] = elems[1];
                     }
