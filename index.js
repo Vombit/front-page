@@ -1,7 +1,8 @@
-var requestTime = 0.8; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTime = 0.5; // request interval in seconds (0; 0.5; 1; 2; etc)
 
 /*-------AutoUpdate SVG-------*/
 window.onload = function() {
+    getEvents();
     setInterval(getEvents, requestTime * 1000);
 };
 /*-------AutoUpdate END-------*/
@@ -9,7 +10,8 @@ window.onload = function() {
 /*-------Getting Json & calling ArrayJson()-------*/
 function getEvents() {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/events', true);
+    ///events?fullState=true
+    xhr.open('GET', '/events?fullState=true', true);
     xhr.responseType = 'json';
     xhr.onload = function () {
         if (xhr.readyState === xhr.DONE) {
@@ -32,12 +34,14 @@ function ArrayJSON2(obj_JSON) {
         var childs = svgDocument.querySelectorAll(`#${item.id} > *`)    // выбор элементов внутри messages.id
         for (let i = 0; i < childs.length; i++) {                       // перебор элементов
             if (childs[i].getAttribute('ksa:subid') == item.subid) {    // проверка элемента на соответсвие subid и дальнейшая обработка
-
-                var arr = item.style.split(':');
-                var styleType = arr[0];
-                var styleParam = arr[1];
-
-                childs[i].style[styleType] = styleParam;
+                item.style.split(';').filter(function(el){return el.length != 0}).map(function (pars) {
+                    var elems = pars.split(/:(.*)/s).filter(function(el){return el.length != 0});
+                    if (elems[0] == 'text') {
+                        childs[i].textContent = elems[1];
+                    } else {
+                        childs[i].style[elems[0]] = elems[1];
+                    }
+                });
             }
         }
     });
