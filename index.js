@@ -88,19 +88,63 @@ function showCheckboxes(checkboxes_id) {
 /*-------Infrastructure SVG options-------*/
 
 
-let div = document.createElement('div');
-  div.className = "alert";
-  div.innerHTML = "<strong>Всем привет!</strong> Вы прочитали важное сообщение.";
+// let div = document.createElement('div');
+//   div.className = "alert";
+//   div.innerHTML = "<strong>Всем привет!</strong> Вы прочитали важное сообщение.";
 
-  infrastructure.append(div);
+//   infrastructure.append(div);
 
-  infrastructure.insertAdjacentHTML('afterend', '<p>Пока</p>');
+//   infrastructure.insertAdjacentHTML('afterend', '<p>Пока</p>');
+
+/*
+svg svg_serial
+ksa_top ksa:name="uns_pa4"
+ksa_bot ksa:title="У41"
+*/
+
+
+var objectSVG2 = document.getElementById('svg_serial');
+var svgDocument2 = objectSVG2.contentDocument;
+var childs2 = svgDocument2.querySelectorAll("*");
+// for (let i = 0; i < childs2.length; i++) {
+//     if (childs2[i].getAttribute('ksa:class') == '') {
+//         index
+//     }
+//     const element = childs2[i];
+//     console.log(element)
+// }
+
+
+svgDocument2.addEventListener("click", function(e) {
+    console.log(e)
+    for (let i = 0; i < e.currentTarget.attributes.length; i++) {
+
+        const element = e.currentTarget.attributes[i];
+        console.log(element)
+
+    }
+
+    
+  });
+
+// for (var i = 0; i < childs2.length; i++) {
+//     elems[i].addEventListener("click", highlightThis, true);
+//     elems[i].addEventListener("click", highlightThis, false);
+//   }
+
+// ksa:class="RMS:StdModulClass"
+
+
+// document.addEventListener("click", function(e) {
+//     if (e.target.className=="itemHolder") {
+//      alert("click");
+//      //ваши действия
+//     }
+//   });
 
 
 
-
-dragElement(document.getElementById("mydiv"));
-
+dragElement(document.getElementById("mydiv")); // функция позволяющая перетаскивать окно
 function dragElement(elmnt) {
   var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
   if (document.getElementById(elmnt.id + "header")) {
