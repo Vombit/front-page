@@ -1,4 +1,4 @@
-var requestTime = 0.5; // request interval in seconds (0; 0.5; 1; 2; etc)
+var requestTime = 1; // request interval in seconds (0; 0.5; 1; 2; etc)
 var requestTimeAll = 3; // request interval in seconds (0; 0.5; 1; 2; etc)
 
 /*-------AutoUpdate SVG-------*/
@@ -36,8 +36,8 @@ function ArrayJSON(obj_JSON) {
     obj_JSON.forEach((item) => {
         var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
         var svgDocument = objectSVG.contentDocument;
-        console.log(objectSVG)
-        console.log(svgDocument)
+        // console.log(objectSVG)
+        // console.log(svgDocument)
         var childs = svgDocument.querySelectorAll(`#${item.id} > *`)    // выбор элементов внутри messages.id
         for (let i = 0; i < childs.length; i++) {                       // перебор элементов
             if (childs[i].getAttribute('ksa:subid') == item.subid) {    // проверка элемента на соответсвие subid и дальнейшая обработка
@@ -79,11 +79,65 @@ function showCheckboxes(checkboxes_id) {
 /*-------Checkbox's in event page END-------*/
 // 
 /*-------Station SVG options-------*/
+    var cric_fill = '#ffffff00';
+    var cric_stroke = '#ffffff00';
+
 
 /*-------Station SVG options END-------*/
 // 
 /*-------Infrastructure SVG options-------*/
 
+
+let div = document.createElement('div');
+  div.className = "alert";
+  div.innerHTML = "<strong>Всем привет!</strong> Вы прочитали важное сообщение.";
+
+  infrastructure.append(div);
+
+  infrastructure.insertAdjacentHTML('afterend', '<p>Пока</p>');
+
+
+
+
+dragElement(document.getElementById("mydiv"));
+
+function dragElement(elmnt) {
+  var pos1 = 0, pos2 = 0, pos3 = 0, pos4 = 0;
+  if (document.getElementById(elmnt.id + "header")) {
+    // if present, the header is where you move the DIV from:
+    document.getElementById(elmnt.id + "header").onmousedown = dragMouseDown;
+  } else {
+    // otherwise, move the DIV from anywhere inside the DIV:
+    elmnt.onmousedown = dragMouseDown;
+  }
+  function dragMouseDown(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // get the mouse cursor position at startup:
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    document.onmouseup = closeDragElement;
+    // call a function whenever the cursor moves:
+    document.onmousemove = elementDrag;
+  }
+  function elementDrag(e) {
+    e = e || window.event;
+    e.preventDefault();
+    // calculate the new cursor position:
+    pos1 = pos3 - e.clientX;
+    pos2 = pos4 - e.clientY;
+    pos3 = e.clientX;
+    pos4 = e.clientY;
+    // set the element's new position:
+    elmnt.style.top = (elmnt.offsetTop - pos2) + "px";
+    elmnt.style.left = (elmnt.offsetLeft - pos1) + "px";
+  }
+  function closeDragElement() {
+    // stop moving when mouse button is released:
+    document.onmouseup = null;
+    document.onmousemove = null;
+  }
+}
 /*-------Infrastructure SVG options END-------*/
 // 
 /*-------Isolation SVG options-------*/
@@ -91,27 +145,5 @@ function showCheckboxes(checkboxes_id) {
 /*-------Isolation SVG options END-------*/
 // 
 /*-------Events options-------*/
-function tableCreate() {
-    const body = document.body,
-          tbl = document.createElement('table');
-    tbl.style.width = '100px';
-    tbl.style.border = '1px solid black';
-  
-    for (let i = 0; i < 3; i++) {
-      const tr = tbl.insertRow();
-      for (let j = 0; j < 2; j++) {
-        if (i === 2 && j === 1) {
-          break;
-        } else {
-          const td = tr.insertCell();
-          td.appendChild(document.createTextNode(`Cell I${i}/J${j}`));
-          td.style.border = '1px solid black';
-          if (i === 1 && j === 1) {
-            td.setAttribute('rowSpan', '2');
-          }
-        }
-      }
-    }
-    body.appendChild(tbl);
-  }
+
 /*-------Events options END-------*/
