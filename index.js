@@ -12,6 +12,18 @@ window.onload = function() {
     setInterval(() => {
         getEvents('/events');                   // вызов json по интервалу requestTime
     }, requestTime * 1000);
+
+    var cric_fill = '#ffffff00';
+    var cric_stroke = '#ffffff00';
+
+    var objectSVG = document.getElementById('svg2988');
+    var svgDocument = objectSVG.contentDocument;
+    var chlds = svgDocument.querySelectorAll('circle');
+    for (let i = 0; i < chlds.length; i++) {
+        chlds[i].style.fill = cric_fill;
+        chlds[i].style.stroke = cric_stroke;
+    }
+
 };
 /*-------AutoUpdate END-------*/
 // 
@@ -36,6 +48,12 @@ function ArrayJSON(obj_JSON) {
     obj_JSON.forEach((item) => {
         var objectSVG = document.getElementById(item.svg); // id div в котором лежит SVG (называется так же как и SVG)
         var svgDocument = objectSVG.contentDocument;
+
+
+        // var test = document.querySelector('#svg_serial');
+        // test
+        //         // var objectSVG = test.getElementById('svg_serial');
+
         // console.log(objectSVG)
         // console.log(svgDocument)
         var childs = svgDocument.querySelectorAll(`#${item.id} > *`)    // выбор элементов внутри messages.id
@@ -87,60 +105,6 @@ function showCheckboxes(checkboxes_id) {
 // 
 /*-------Infrastructure SVG options-------*/
 
-
-// let div = document.createElement('div');
-//   div.className = "alert";
-//   div.innerHTML = "<strong>Всем привет!</strong> Вы прочитали важное сообщение.";
-
-//   infrastructure.append(div);
-
-//   infrastructure.insertAdjacentHTML('afterend', '<p>Пока</p>');
-
-/*
-svg svg_serial
-ksa_top ksa:name="uns_pa4"
-ksa_bot ksa:title="У41"
-*/
-
-
-var objectSVG2 = document.getElementById('svg_serial');
-var svgDocument2 = objectSVG2.contentDocument;
-var childs2 = svgDocument2.querySelectorAll("*");
-// for (let i = 0; i < childs2.length; i++) {
-//     if (childs2[i].getAttribute('ksa:class') == '') {
-//         index
-//     }
-//     const element = childs2[i];
-//     console.log(element)
-// }
-
-
-svgDocument2.addEventListener("click", function(e) {
-    console.log(e)
-    for (let i = 0; i < e.currentTarget.attributes.length; i++) {
-
-        const element = e.currentTarget.attributes[i];
-        console.log(element)
-
-    }
-
-    
-  });
-
-// for (var i = 0; i < childs2.length; i++) {
-//     elems[i].addEventListener("click", highlightThis, true);
-//     elems[i].addEventListener("click", highlightThis, false);
-//   }
-
-// ksa:class="RMS:StdModulClass"
-
-
-// document.addEventListener("click", function(e) {
-//     if (e.target.className=="itemHolder") {
-//      alert("click");
-//      //ваши действия
-//     }
-//   });
 
 
 
