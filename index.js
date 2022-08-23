@@ -13,17 +13,8 @@ window.onload = function() {
         getEvents('/events');                   // вызов json по интервалу requestTime
     }, requestTime * 1000);
 
-    var cric_fill = '#ffffff00';
-    var cric_stroke = '#ffffff00';
-
-    var objectSVG = document.getElementById('svg2988');
-    var svgDocument = objectSVG.contentDocument;
-    var chlds = svgDocument.querySelectorAll('circle');
-    for (let i = 0; i < chlds.length; i++) {
-        chlds[i].style.fill = cric_fill;
-        chlds[i].style.stroke = cric_stroke;
-    }
-
+    del_circle("svg2988");
+    del_circle("svg_serial");
 };
 /*-------AutoUpdate END-------*/
 // 
@@ -72,6 +63,18 @@ function ArrayJSON(obj_JSON) {
             }
         }
     });
+}
+function del_circle(svg) {
+  var cric_fill = '#ffffff00';
+  var cric_stroke = '#ffffff00';
+  
+  var objectSVG = document.getElementById(svg);
+  var svgDocument = objectSVG.contentDocument;
+  var chlds = svgDocument.querySelectorAll('circle');
+  for (let i = 0; i < chlds.length; i++) {
+      chlds[i].style.fill = cric_fill;
+      chlds[i].style.stroke = cric_stroke;
+  }
 }
 /*-------Changer Style SVG END-------*/
 // 
